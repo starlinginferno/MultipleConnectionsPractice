@@ -54,7 +54,6 @@ public class AppService {
     }
 
     public void saveComment(Long personId, Long taskId, Comment comment) {
- //       Person person = personRepository.findById(personId).get();
         Task task = taskRepository.findById(taskId).get();
         Person person = personRepository.findById(personId).get();
         task.getTaskcomments().add(comment);
@@ -62,6 +61,8 @@ public class AppService {
         comment.setCommentstask(task);
         comment.setCommentsperson(person);
         commentRepository.save(comment);
+        person.getPersoncomments().add(comment);
+        personRepository.save(person);
     }
 
     public List<Comment> listCommentsByPerson(Long personId) {
