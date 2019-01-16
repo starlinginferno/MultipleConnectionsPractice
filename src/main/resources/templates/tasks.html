@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<div class="text-center">
+    <form action="#" th:action="'/people/' + ${person.getId()} + '/tasks/add'" method="post" th:object="${newTask}">
+        <input hidden th:field="*{id}">
+        <label for="task">Task</label><br>
+        <input type="text" id="task" th:field="*{title}" required autofocus>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </form>
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Person</th>
+            <th>Task</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}" th:object="${task}">
+            <td th:text="*{tasksperson.getId()}"></td>
+            <td th:text="*{title}"></td>
+            <td> <a th:href="'/people/' + *{tasksperson.getId()} + '/tasks/' + *{id} + '/comments/add'">Add Comments</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>Comments</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Person</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody th:each="task : ${tasks}" th:object="${task}">
+        <tr th:each="comment : ${task.getTaskcomments()}" th:object="${comment}">
+            <td th:text="*{commentsperson.getName()}"></td>
+            <td th:text="*{content}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

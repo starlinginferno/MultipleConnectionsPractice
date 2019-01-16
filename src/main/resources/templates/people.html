@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+</head>
+<body>
+<div class="text-center">
+    <form action="#" th:action="'/people/add'" method="post" th:object="${newPerson}">
+        <input hidden th:field="*{id}">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" th:field="*{name}" required autofocus><br>
+        <label for="password">Password</label><br>
+        <input type="text" id="password" th:field="*{password}" required><br>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </form>
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Tasks</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${people}" th:object="${person}">
+            <td th:text="*{name}"></td>
+            <td th:text="*{password}"></td>
+            <td> <a th:href="'/people/' + *{id} + '/tasks'">Tasks</a></td>
+            <td> <a th:href="'/people/' + *{id} + '/comments'">Comments</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
