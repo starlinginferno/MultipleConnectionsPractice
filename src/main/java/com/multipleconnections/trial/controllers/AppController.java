@@ -59,6 +59,7 @@ public class AppController {
     public String addComment(@PathVariable Long personId, @PathVariable Long taskId, @ModelAttribute("newComment") Comment comment, Model model) {
         model.addAttribute("person", appService.findPerson(personId));
         model.addAttribute("task", appService.findTask(taskId));
+        model.addAttribute("comments", appService.listCommentsByTaskId(taskId));
         model.addAttribute("newComment", comment);
         return "comments";
     }

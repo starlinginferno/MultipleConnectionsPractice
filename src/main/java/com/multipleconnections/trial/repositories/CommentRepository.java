@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-    List<Comment> findAllByCommentsperson_Id(Long id);
+    List<Comment> findAllByCommentstask_Id(Long id);
 }

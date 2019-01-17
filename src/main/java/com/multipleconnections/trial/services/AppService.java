@@ -65,8 +65,8 @@ public class AppService {
         personRepository.save(person);
     }
 
-    public List<Comment> listCommentsByPerson(Long personId) {
-        return commentRepository.findAllByCommentsperson_Id(personId);
+    public List<Comment> listCommentsByTaskId(Long taskId) {
+        return commentRepository.findAllByCommentstask_Id(taskId);
     }
 
     public Iterable<Comment> listComments() {

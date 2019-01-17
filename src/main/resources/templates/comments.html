@@ -17,13 +17,13 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Person</th>
-            <th>Task</th>
+            <th>Comment's Person</th>
+            <th>Comment's Task</th>
             <th>Comment</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="comment : ${task.getTaskcomments()}" th:object="${comment}">
+        <tr th:each="comment : ${comments}" th:object="${comment}">
             <td th:text="*{commentsperson.getName()}"></td>
             <td th:text="*{commentstask.getTitle()}"></td>
             <td th:text="*{content}"></td>
