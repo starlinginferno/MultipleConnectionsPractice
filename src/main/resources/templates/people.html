@@ -22,15 +22,13 @@
             <th>Name</th>
             <th>Password</th>
             <th>Tasks</th>
-            <th>Comments</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="person : ${people}" th:object="${person}">
             <td th:text="*{name}"></td>
             <td th:text="*{password}"></td>
-            <td> <a th:href="'/people/' + *{id} + '/tasks'">Tasks</a></td>
-            <td> <a th:href="'/people/' + *{id} + '/comments'">Comments</a></td>
+            <td> <a th:href="'/people/' + *{id} + '/tasks'">Tasks (Second layer)</a></td>
         </tr>
         </tbody>
     </table>

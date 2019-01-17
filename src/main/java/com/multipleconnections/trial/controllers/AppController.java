@@ -22,6 +22,14 @@ public class AppController {
         this.appService = appService;
     }
 
+    @GetMapping("/")
+    public String everything(Model model) {
+        model.addAttribute("people", appService.listPeople());
+        model.addAttribute("tasks", appService.listTasks());
+        model.addAttribute("comments", appService.listComments());
+        return "index";
+    }
+
     @GetMapping("/people")
     public String listPeople(Model model, @ModelAttribute("newPerson") Person person) {
         model.addAttribute("people", appService.listPeople());
@@ -47,17 +55,17 @@ public class AppController {
         return "redirect:/people/" + personId + "/tasks";
     }
 
-    @GetMapping("/people/{personId}/tasks/{taskId}/comments/add")
+    @GetMapping("/people/{personId}/tasks/{taskId}/comments")
     public String addComment(@PathVariable Long personId, @PathVariable Long taskId, @ModelAttribute("newComment") Comment comment, Model model) {
         model.addAttribute("person", appService.findPerson(personId));
         model.addAttribute("task", appService.findTask(taskId));
         model.addAttribute("newComment", comment);
-        return "addcomment";
+        return "comments";
     }
 
     @PostMapping("/people/{personId}/tasks/{taskId}/comments/add")
     public String saveComment(@PathVariable Long personId, @PathVariable Long taskId, @ModelAttribute("newComment") Comment comment) {
         appService.saveComment(personId, taskId, comment);
-        return "redirect:/people/" + personId + "/tasks";
+        return "redirect:/people/" + personId + "/tasks/" + taskId + "/comments";
     }
 }

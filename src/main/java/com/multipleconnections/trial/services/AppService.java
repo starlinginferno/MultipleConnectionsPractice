@@ -68,4 +68,12 @@ public class AppService {
     public List<Comment> listCommentsByPerson(Long personId) {
         return commentRepository.findAllByCommentsperson_Id(personId);
     }
+
+    public Iterable<Comment> listComments() {
+        return commentRepository.findAll();
+    }
+
+    public Iterable<Task> listTasks() {
+        return taskRepository.findAll();
+    }
 }

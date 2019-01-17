@@ -23,26 +23,9 @@
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}" th:object="${task}">
-            <td th:text="*{tasksperson.getId()}"></td>
+            <td th:text="*{tasksperson.getName()}"></td>
             <td th:text="*{title}"></td>
-            <td> <a th:href="'/people/' + *{tasksperson.getId()} + '/tasks/' + *{id} + '/comments/add'">Add Comments</a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div>Comments</div>
-<div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Person</th>
-            <th>Comment</th>
-        </tr>
-        </thead>
-        <tbody th:each="task : ${tasks}" th:object="${task}">
-        <tr th:each="comment : ${task.getTaskcomments()}" th:object="${comment}">
-            <td th:text="*{commentsperson.getName()}"></td>
-            <td th:text="*{content}"></td>
+            <td> <a th:href="'/people/' + *{tasksperson.getId()} + '/tasks/' + *{id} + '/comments'">Comments (Third Layer)</a></td>
         </tr>
         </tbody>
     </table>
